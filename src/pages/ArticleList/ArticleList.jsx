@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import api from '@/api';
 
 export default function ArticleList() {
-  const [count, setCount] = useState(0);
+  const [articleList, setArticleList] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect-1');
-    return () => {
-      console.log('clear-1');
-    };
-  });
+    api.article.getArticleList().then((res) => {
+      setArticleList(res);
+    });
+  }, []);
 
-  useEffect(() => {
-    console.log('useEffect-2');
-    return () => {
-      console.log('clear-2');
-    };
-  }, [count]);
-
-  const increaseCount = () => {
-    setCount(count + 1);
-  };
   return (
     <div>
-      <h1>ArticleList</h1>
-      <p>{count}</p>
-      <button onClick={increaseCount}>增加</button>
+      {articleList.map(item => (
+        <div key={item.id}>
+          <Link
+            to={{
+              pathname: `/ArticleDetail/${item.id}`,
+            }}
+          >
+            {item.title}
+            {item.id}
+          </Link>
+        </div>
+      ))}
     </div>
   );
 }
