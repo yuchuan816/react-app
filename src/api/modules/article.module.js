@@ -1,16 +1,37 @@
+import http from '@/api/http';
+
 export default {
   /**
    * 获取文章列表
    */
   getArticleList() {
-    return fetch('http://127.0.0.1:8000/api/article/articles/', {
+    return http({
+      url: 'article/articles/',
       method: 'GET',
-    }).then(res => res.json());
+    });
   },
 
-  getArticleDetail({ id }) {
-    return fetch(`http://127.0.0.1:8000/api/article/articles/${id}/`, {
+  /**
+   * 获取单个文章详情
+   * @param {*} id
+   */
+  getArticleDetail(id) {
+    return http({
+      url: `article/articles/${id}/`,
       method: 'GET',
-    }).then(res => res.json());
+    });
+  },
+
+  /**
+   * 编辑文章
+   * @param {*} id
+   * @param {*} params
+   */
+  editArticle(id, params) {
+    return http({
+      url: `article/articles/${id}/`,
+      method: 'PATCH',
+      params,
+    });
   },
 };

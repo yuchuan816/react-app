@@ -6,8 +6,8 @@ export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
 
   useEffect(() => {
-    api.article.getArticleList().then((res) => {
-      setArticleList(res);
+    api.article.getArticleList().then((data) => {
+      setArticleList(data);
     });
   }, []);
 
@@ -21,8 +21,14 @@ export default function ArticleList() {
             }}
           >
             {item.title}
-            {item.id}
           </Link>
+          <div>
+            <span>{item.id}</span>
+            <span> | </span>
+            <span>{item.created_time}</span>
+            <span> | </span>
+            <span>{item.modified_time}</span>
+          </div>
         </div>
       ))}
     </div>

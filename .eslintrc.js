@@ -23,6 +23,10 @@ module.exports = {
     "rules": {
         "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
         "no-plusplus": "off",
+        "no-unused-expressions": ["error", {
+            "allowShortCircuit": true,
+            "allowTernary": true,
+        }],
         // ---
         "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
         "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
