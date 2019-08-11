@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '@/api';
 
 
-export default function Login() {
+export default function Login({ history }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,6 +12,7 @@ export default function Login() {
       password,
     }).then((data) => {
       localStorage.setItem('token', data.access);
+      history.push({ pathname: '/' });
     });
   };
 
