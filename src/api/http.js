@@ -1,5 +1,5 @@
 
-const baseUrl = 'http://129.204.76.142:80/api/';
+const baseUrl = 'http://129.204.76.142:8000/api/';
 
 export default function ({ method = 'GET', url = '', params = {} }) {
   const fullUrl = baseUrl + url;

@@ -22,6 +22,7 @@ module.exports = {
     ],
     "rules": {
         // "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+        "no-console": "off",
         "no-plusplus": "off",
         "no-unused-expressions": ["error", {
             "allowShortCircuit": true,
