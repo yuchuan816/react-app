@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.16
 
 MAINTAINER liuyuchuan liuyuchuan816@163.com
 
