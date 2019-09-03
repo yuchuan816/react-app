@@ -27,9 +27,9 @@ export default function Login({ history }) {
 
   return (
     <div>
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
       <br />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <br />
       <button onClick={handleLogin}>登录</button>
       <button onClick={handleRegister}>注册</button>

@@ -13,7 +13,7 @@ export default function ArticleList() {
 
   return (
     <div>
-      {articleList.map(item => (
+      {articleList.map((item) => (
         <div key={item.id}>
           <Link
             to={{

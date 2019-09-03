@@ -24,9 +24,9 @@ export default function ArticleDetail({ match }) {
     <div>
       <button onClick={handleSave}>保存</button>
       <hr />
-      <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       <br />
-      <textarea type="text" cols="80" rows="20" value={body} onChange={e => setBody(e.target.value)} />
+      <textarea type="text" cols="80" rows="20" value={body} onChange={(e) => setBody(e.target.value)} />
     </div>
   );
 }

@@ -32,7 +32,7 @@ const isMeaningfulObject = (val) => {
  * @param filePath
  * @returns {*}
  */
-const filterFilePath = filePath => filePath.replace(/\.\/|\.\.\//g, '').replace(/\.module.js$/, '');
+const filterFilePath = (filePath) => filePath.replace(/\.\/|\.\.\//g, '').replace(/\.module.js$/, '');
 
 /**
  * 获取 scrollBar 宽度

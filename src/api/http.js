@@ -16,5 +16,5 @@ export default function ({ method = 'GET', url = '', params = {} }) {
     ...otherConfig,
     headers,
     method,
-  }).then(res => res.json());
+  }).then((res) => res.json());
 }

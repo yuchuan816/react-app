@@ -27,7 +27,7 @@ export default function ArticleDetail({ match }) {
       <p>{body}</p>
       <hr />
       <p>评论：</p>
-      {comments.map(item => (
+      {comments.map((item) => (
         <div key={item.id}>
           <p>{item.content}</p>
         </div>

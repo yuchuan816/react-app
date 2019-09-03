@@ -53,7 +53,7 @@ const checkIdCard = (idcode) => {
  * 校验银行卡号
  * @param {*} bankCardNumber
  */
-const checkBankCardNumber = bankCardNumber => /\d{16,19}/.test(bankCardNumber);
+const checkBankCardNumber = (bankCardNumber) => /\d{16,19}/.test(bankCardNumber);
 
 /**
  * 密码验证方法
