@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
 import api from '@/api';
-
 
 export default function Login({ history }) {
   const [username, setUsername] = useState('');
@@ -27,12 +27,21 @@ export default function Login({ history }) {
 
   return (
     <div>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <TextField
+        label="用户名"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <br />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <TextField
+        label="密码"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <br />
-      <button onClick={handleLogin}>登录</button>
-      <button onClick={handleRegister}>注册</button>
+      <Button variant="contained" color="primary" onClick={handleLogin}>登录</Button>
+      <Button color="primary" onClick={handleRegister}>注册</Button>
     </div>
   );
 }
