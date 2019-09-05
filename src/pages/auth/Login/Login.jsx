@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
+import {
+  Button,
+  TextField,
+  Divider,
+  Typography,
+} from '@material-ui/core';
+import {
+  LoginWrapper,
+  LoginCoreWrapper,
+  AccountInputWrapper,
+  ButtonWrapper,
+  RegisterButtonWrapper,
+} from './styled';
 import api from '@/api';
 
 export default function Login({ history }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleLogin = () => {
     api.auth.login({
@@ -17,31 +31,42 @@ export default function Login({ history }) {
   };
 
   const handleRegister = () => {
-    api.auth.register({
-      username,
-      password,
-    }).then((data) => {
-      console.log(data);
-    });
+    enqueueSnackbar('注册功能开发中！', { variant: 'info' });
+    // api.auth.register({
+    //   username,
+    //   password,
+    // }).then((data) => {
+    //   console.log(data);
+    // });
   };
 
   return (
-    <div>
-      <TextField
-        label="用户名"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <br />
-      <TextField
-        label="密码"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <Button variant="contained" color="primary" onClick={handleLogin}>登录</Button>
-      <Button color="primary" onClick={handleRegister}>注册</Button>
-    </div>
+    <LoginWrapper>
+      <LoginCoreWrapper elevation={6}>
+        <Typography variant="h6" gutterBottom color="primary">L-Y-C BLOG</Typography>
+        <Divider />
+        <AccountInputWrapper>
+          <TextField
+            fullWidth
+            label="用户名"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </AccountInputWrapper>
+        <TextField
+          fullWidth
+          label="密码"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <ButtonWrapper>
+          <Button fullWidth variant="contained" color="primary" onClick={handleLogin}>登录</Button>
+          <RegisterButtonWrapper>
+            <Button color="primary" onClick={handleRegister}>注册</Button>
+          </RegisterButtonWrapper>
+        </ButtonWrapper>
+      </LoginCoreWrapper>
+    </LoginWrapper>
   );
 }

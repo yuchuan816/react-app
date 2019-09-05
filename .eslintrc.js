@@ -32,9 +32,11 @@ module.exports = {
         "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
         "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
         "react/button-has-type": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/prop-types": ["warn", { ignore: ['history', 'location', 'match']}],
 
         "import/no-unresolved": ["error", { ignore: ['@']}],
+        "import/prefer-default-export": "off",
 
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/no-noninteractive-element-interactions": "off",
