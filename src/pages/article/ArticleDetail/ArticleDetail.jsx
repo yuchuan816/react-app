@@ -17,7 +17,7 @@ export default function ArticleDetail({ match }) {
     <div>
       <Link
         to={{
-          pathname: `/ArticleEdit/${id}`,
+          pathname: `/Main/ArticleEdit/${id}`,
         }}
       >
         编辑

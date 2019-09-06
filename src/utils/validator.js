@@ -5,7 +5,7 @@
  * 详情查看javascript的数值范围
  */
 
-const checkIdCard = (idcode) => {
+export const checkIdCard = (idcode) => {
   // 加权因子
   const weightFactor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
   // 校验码
@@ -53,14 +53,14 @@ const checkIdCard = (idcode) => {
  * 校验银行卡号
  * @param {*} bankCardNumber
  */
-const checkBankCardNumber = (bankCardNumber) => /\d{16,19}/.test(bankCardNumber);
+export const checkBankCardNumber = (bankCardNumber) => /\d{16,19}/.test(bankCardNumber);
 
 /**
  * 密码验证方法
  * @param {*} str
  * @param {*} callback
  */
-const passwordValidate = (str, callback) => {
+export const passwordValidate = (str, callback) => {
   const rC = {
     lW: '[a-z]', // 小写字母
     uW: '[A-Z]', // 大写字母
@@ -93,10 +93,4 @@ const passwordValidate = (str, callback) => {
       callback(new Error('密码必须含有"小写字母"、"大写字母"、"数字"、"特殊符号"中的任意三种'));
     }
   }
-};
-
-export default {
-  checkIdCard,
-  checkBankCardNumber,
-  passwordValidate,
 };

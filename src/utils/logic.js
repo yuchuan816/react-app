@@ -8,7 +8,7 @@ let scrollBarWidth;
  * @param length
  * @returns {string}
  */
-const prefixInteger = (num, length) => {
+export const prefixInteger = (num, length) => {
   if (num.toString().length < length) {
     return (Array(length).join('0') + num).slice(-length);
   }
@@ -20,7 +20,7 @@ const prefixInteger = (num, length) => {
  * @param val
  * @returns {boolean}
  */
-const isMeaningfulObject = (val) => {
+export const isMeaningfulObject = (val) => {
   if (val instanceof Object) {
     return Object.keys(val).length > 0;
   }
@@ -32,13 +32,13 @@ const isMeaningfulObject = (val) => {
  * @param filePath
  * @returns {*}
  */
-const filterFilePath = (filePath) => filePath.replace(/\.\/|\.\.\//g, '').replace(/\.module.js$/, '');
+export const filterFilePath = (filePath) => filePath.replace(/\.\/|\.\.\//g, '').replace(/\.module.js$/, '');
 
 /**
  * 获取 scrollBar 宽度
  * @return {number}
  */
-const getScrollBarWidth = () => {
+export const getScrollBarWidth = () => {
   if (scrollBarWidth !== undefined) return scrollBarWidth;
   const outer = document.createElement('div');
   outer.style.visibility = 'hidden';
@@ -62,7 +62,7 @@ const getScrollBarWidth = () => {
  * 获取cookie
  * @param {*} cookieName
  */
-const getCookie = (cookieName) => {
+export const getCookie = (cookieName) => {
   const allCookies = document.cookie;
   let value = '';
 
@@ -91,7 +91,7 @@ const getCookie = (cookieName) => {
  * @param {*} min
  * @param {*} max
  */
-const createPassword = (min, max) => {
+export const createPassword = (min, max) => {
   // 可以生成随机密码的相关数组
   const num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const english = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -131,19 +131,8 @@ const createPassword = (min, max) => {
  * 使用md5加密
  * @param {*} value
  */
-const encryptWithMd5 = (value) => {
+export const encryptWithMd5 = (value) => {
   const md5 = crypto.createHash('md5');
   md5.update(value);
   return md5.digest('hex');
-};
-
-
-export default {
-  prefixInteger,
-  isMeaningfulObject,
-  filterFilePath,
-  getScrollBarWidth,
-  getCookie,
-  encryptWithMd5,
-  createPassword,
 };

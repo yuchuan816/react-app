@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import Login from '@/pages/auth/Login/Login';
 import Main from '@/Layout/Main/Main';
@@ -14,8 +19,11 @@ function App() {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <Router>
-          <Route exact path="/" component={Main} />
-          <Route path="/Login" component={Login} />
+          <Switch>
+            <Redirect exact from="/" to="/Main" />
+            <Route path="/Main" component={Main} />
+            <Route path="/Login" component={Login} />
+          </Switch>
         </Router>
       </SnackbarProvider>
     </div>

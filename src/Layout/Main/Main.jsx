@@ -1,5 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -10,7 +14,9 @@ import ArticleList from '@/pages/article/ArticleList/ArticleList';
 import ArticleDetail from '@/pages/article/ArticleDetail/ArticleDetail';
 import ArticleEdit from '@/pages/article/ArticleEdit/ArticleEdit';
 
-export default function Home() {
+export default function Main({ match }) {
+  const { path } = match;
+
   return (
     <div>
       <AppBar>
@@ -21,9 +27,12 @@ export default function Home() {
         </Toolbar>
       </AppBar>
       <ContentWrapper>
-        <Route exact path="/" component={ArticleList} />
-        <Route path="/ArticleDetail/:id" component={ArticleDetail} />
-        <Route path="/ArticleEdit/:id" component={ArticleEdit} />
+        <Switch>
+          <Redirect exact from={path} to={`${path}/ArticleList`} />
+          <Route path={`${path}/ArticleList`} component={ArticleList} />
+          <Route path={`${path}/ArticleDetail/:id`} component={ArticleDetail} />
+          <Route path={`${path}/ArticleEdit/:id`} component={ArticleEdit} />
+        </Switch>
       </ContentWrapper>
     </div>
   );
