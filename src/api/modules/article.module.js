@@ -23,6 +23,19 @@ export default {
   },
 
   /**
+   * 添加文章
+   * @param {*} id
+   * @param {*} params
+   */
+  addArticle(params) {
+    return http({
+      url: 'article/articles/',
+      method: 'POST',
+      params,
+    });
+  },
+
+  /**
    * 编辑文章
    * @param {*} id
    * @param {*} params

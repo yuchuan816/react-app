@@ -16,9 +16,9 @@ import {
 import api from '@/api';
 
 export default function Login({ history }) {
+  const { enqueueSnackbar } = useSnackbar();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleLogin = () => {
     api.auth.login({

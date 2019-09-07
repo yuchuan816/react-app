@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { ContentWrapper } from './styled';
+import { MainWrapper, ContentWrapper } from './styled';
 import ArticleList from '@/pages/article/ArticleList/ArticleList';
 import ArticleDetail from '@/pages/article/ArticleDetail/ArticleDetail';
 import ArticleEdit from '@/pages/article/ArticleEdit/ArticleEdit';
@@ -18,7 +18,7 @@ export default function Main({ match }) {
   const { path } = match;
 
   return (
-    <div>
+    <MainWrapper>
       <AppBar>
         <Toolbar variant="dense">
           <Typography variant="h6">
@@ -32,8 +32,9 @@ export default function Main({ match }) {
           <Route path={`${path}/ArticleList`} component={ArticleList} />
           <Route path={`${path}/ArticleDetail/:id`} component={ArticleDetail} />
           <Route path={`${path}/ArticleEdit/:id`} component={ArticleEdit} />
+          <Route path={`${path}/ArticleEdit`} component={ArticleEdit} />
         </Switch>
       </ContentWrapper>
-    </div>
+    </MainWrapper>
   );
 }
