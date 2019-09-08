@@ -10,9 +10,12 @@ export const ListWrapper = styled(Paper)`
   width: 960px;
 `;
 
-export const ItemDateWrapper = styled.span`
+export const ItemInfoWrapper = styled.span`
   display: flex;
   justify-content: space-between;
-  width: 400px;
   padding-top: 8px;
+`;
+
+export const ItemLine = styled.span`
+  padding: 0 8px;
 `;

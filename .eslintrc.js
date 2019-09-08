@@ -22,9 +22,10 @@ module.exports = {
     ],
     "rules": {
         // "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-        "no-unused-vars": "warn",
+        "arrow-body-style": "off",
         "no-console": "off",
         "no-plusplus": "off",
+        "no-unused-vars": "warn",
         "no-unused-expressions": ["error", {
             "allowShortCircuit": true,
             "allowTernary": true,

@@ -8,6 +8,7 @@ import {
 import { Edit as EditIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { ArticleDetailWrapper } from './styled';
+import ArticleDetailComments from './ArticleDetailComments';
 import api from '@/api';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.8,
   },
   articleComment: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(3),
   },
 }));
 
@@ -67,21 +68,10 @@ export default function ArticleDetail({ match, history }) {
           {title}
         </Typography>
         <Divider className={classes.divider} />
-        <Typography
-          className={classes.articleContent}
-          variant="body1"
-          color="textPrimary"
-        >
-          {body}
-        </Typography>
+        <div className={classes.articleContent} dangerouslySetInnerHTML={{ __html: body }} />
       </Paper>
       <Paper className={`${classes.paper} ${classes.articleComment}`}>
-        <p>留言：</p>
-        {comments.map((item) => (
-          <div key={item.id}>
-            <p>{item.content}</p>
-          </div>
-        ))}
+        <ArticleDetailComments comments={comments} />
       </Paper>
     </ArticleDetailWrapper>
   );

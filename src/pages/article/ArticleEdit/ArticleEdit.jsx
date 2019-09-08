@@ -3,18 +3,43 @@ import lodash from 'lodash';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useSnackbar } from 'notistack';
+import {
+  Fab,
+  Input,
+  Paper,
+} from '@material-ui/core';
+import { Done as DoneIcon } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
+import { ArticleEditWrapper } from './styled';
 import api from '@/api';
 
-export default function ArticleDetail({ match }) {
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing(8),
+    right: theme.spacing(4),
+  },
+  paper: {
+    width: 960,
+    padding: theme.spacing(2),
+  },
+  titleInput: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+export default function ArticleDetail({ match, history }) {
+  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { id } = match.params;
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
   const handleSave = () => {
-    if (lodash.isNumber(id)) {
+    if (lodash.isString(id)) {
       api.article.editArticle(id, { title, body }).then((data) => {
         enqueueSnackbar('修改成功', { variant: 'success' });
+        history.push({ pathname: `/Main/ArticleDetail/${id}` });
       });
     } else {
       api.article.addArticle({ title, body }).then((data) => {
@@ -31,35 +56,31 @@ export default function ArticleDetail({ match }) {
   }, [id]);
 
   return (
-    <div>
-      <button onClick={handleSave}>保存</button>
-      <hr />
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <br />
-      <CKEditor
-        editor={ClassicEditor}
-        data={body}
-        onInit={(editor) => {
-          console.log('Editor is ready to use!', editor);
-        }}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          console.log({ event, editor, data });
-        }}
-        // onBlur={(event, editor) => {
-          // console.log('Blur.', editor);
-        // }}
-        // onFocus={(event, editor) => {
-          // console.log('Focus.', editor);
-        // }}
-      />
-      {/* <textarea
-        type="text"
-        cols="80"
-        rows="20"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      /> */}
-    </div>
+    <ArticleEditWrapper>
+      <Fab
+        color="secondary"
+        aria-label="save"
+        className={classes.fab}
+        onClick={handleSave}
+      >
+        <DoneIcon />
+      </Fab>
+      <Paper className={classes.paper}>
+        <Input
+          fullWidth
+          className={classes.titleInput}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <CKEditor
+          editor={ClassicEditor}
+          data={body}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setBody(data);
+          }}
+        />
+      </Paper>
+    </ArticleEditWrapper>
   );
 }

@@ -12,10 +12,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   ArticleListWrapper,
   ListWrapper,
-  ItemDateWrapper,
 } from './styled';
+import ArticleListInfo from './ArticleListInfo';
 import api from '@/api';
-import { date2commonDate } from '@/utils/date';
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -72,31 +71,7 @@ export default function ArticleList({ history }) {
                     </Typography>
                   )}
                   secondary={(
-                    <ItemDateWrapper>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="textSecondary"
-                      >
-                        <span>创建时间：</span>
-                        <span>{date2commonDate(item.created_time)}</span>
-                      </Typography>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="textSecondary"
-                      >
-                        |
-                      </Typography>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        color="textSecondary"
-                      >
-                        <span>修改时间：</span>
-                        <span>{date2commonDate(item.modified_time)}</span>
-                      </Typography>
-                    </ItemDateWrapper>
+                    <ArticleListInfo articleInfo={item} />
                   )}
                 />
               </ListItem>

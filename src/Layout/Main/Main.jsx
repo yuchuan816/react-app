@@ -8,23 +8,78 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
 } from '@material-ui/core';
+import { Menu as MenuIcon, Home as HomeIcon } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
 import { MainWrapper, ContentWrapper } from './styled';
 import ArticleList from '@/pages/article/ArticleList/ArticleList';
 import ArticleDetail from '@/pages/article/ArticleDetail/ArticleDetail';
 import ArticleEdit from '@/pages/article/ArticleEdit/ArticleEdit';
 
-export default function Main({ match }) {
-  const { path } = match;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+export default function Main({ match, history }) {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { path, url } = match;
+
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+    history.push({ pathname: `${url}/ArticleList` });
+  }
 
   return (
     <MainWrapper>
       <AppBar>
         <Toolbar variant="dense">
-          <Typography variant="h6">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
             L-Y-C BLOG
           </Typography>
+          <Button color="inherit">Login</Button>
         </Toolbar>
+        <Menu
+          id="menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </MenuItem>
+        </Menu>
       </AppBar>
       <ContentWrapper>
         <Switch>
