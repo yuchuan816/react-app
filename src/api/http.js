@@ -1,11 +1,14 @@
-
 // const baseUrl = 'http://129.204.76.142:8000/api/';
 const baseUrl = 'http://127.0.0.1:9000/api/';
 
-export default function ({ method = 'GET', url = '', params = {} }) {
+
+export default function ({
+  method = 'GET', url = '', params = {},
+}) {
   const fullUrl = baseUrl + url;
   const headers = new Headers();
   // headers.append('Authorization', `Token ${localStorage.getItem('token')}`);
+
   const otherConfig = {};
 
   if (['POST', 'PATCH'].includes(method)) {
