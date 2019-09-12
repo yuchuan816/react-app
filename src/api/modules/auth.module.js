@@ -6,7 +6,7 @@ export default {
    */
   login(params) {
     return http({
-      url: 'login/',
+      url: 'auth/login/',
       method: 'POST',
       params,
     });
