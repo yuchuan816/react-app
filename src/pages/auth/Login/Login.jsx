@@ -25,9 +25,8 @@ export default function Login({ history }) {
       username,
       password,
     }).then((data) => {
-      console.log(data);
       localStorage.setItem('token', data.token);
-      // history.push({ pathname: '/' });
+      history.push({ pathname: '/' });
     });
   };
 

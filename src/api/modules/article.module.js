@@ -30,6 +30,7 @@ export default {
   addArticle(params) {
     return http({
       url: 'article/articles/',
+      requiredToken: true,
       method: 'POST',
       params,
     });
@@ -43,6 +44,7 @@ export default {
   editArticle(id, params) {
     return http({
       url: `article/articles/${id}/`,
+      requiredToken: true,
       method: 'PATCH',
       params,
     });

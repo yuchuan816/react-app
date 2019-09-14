@@ -1,13 +1,16 @@
 // const baseUrl = 'http://129.204.76.142:8000/api/';
-const baseUrl = 'http://127.0.0.1:9000/api/';
+const baseUrl = 'http://127.0.0.1:8000/api/';
 
 
 export default function ({
-  method = 'GET', url = '', params = {},
+  method = 'GET',
+  url = '',
+  params = {},
+  requiredToken = false,
 }) {
   const fullUrl = baseUrl + url;
   const headers = new Headers();
-  // headers.append('Authorization', `Token ${localStorage.getItem('token')}`);
+  requiredToken && headers.append('Authorization', `Token ${localStorage.getItem('token')}`);
 
   const otherConfig = {};
 
