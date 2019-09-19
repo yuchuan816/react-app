@@ -45,6 +45,10 @@ export default function Main({ match, history }) {
 
   function handleClose() {
     setAnchorEl(null);
+  }
+
+  function handleHome() {
+    setAnchorEl(null);
     history.push({ pathname: `${url}/ArticleList` });
   }
 
@@ -73,7 +77,7 @@ export default function Main({ match, history }) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={handleHome}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>

@@ -30,7 +30,7 @@ export default function ArticleList({ history }) {
 
   useEffect(() => {
     api.article.getArticleList().then((data) => {
-      setArticleList(data);
+      setArticleList(data.results);
     });
   }, []);
 

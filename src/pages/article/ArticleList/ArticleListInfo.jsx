@@ -15,7 +15,7 @@ const ArticleListInfo = ({ articleInfo }) => (
       color="textSecondary"
     >
       <span>作者：</span>
-      <span>xxx</span>
+      <span>{articleInfo.author}</span>
     </Typography>
     <span>
       <Typography

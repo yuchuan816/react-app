@@ -23,5 +23,10 @@ export default function ({
     ...otherConfig,
     headers,
     method,
-  }).then((res) => res.json());
+  }).then((res) => {
+    if ([200, 201].includes(res.status)) {
+      return res.json();
+    }
+    return res.json();
+  });
 }

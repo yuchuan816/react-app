@@ -20,3 +20,7 @@ export const CommentItemUserInfo = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const CommentsInput = styled.div`
+  display: flex;
+`;

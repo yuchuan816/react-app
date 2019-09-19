@@ -37,12 +37,17 @@ export default function ArticleDetail({ match, history }) {
 
   const handleSave = () => {
     if (lodash.isString(id)) {
-      api.article.editArticle(id, { title, body }).then((data) => {
+      api.article.editArticle(id, { title, body }).then(() => {
         enqueueSnackbar('修改成功', { variant: 'success' });
         history.push({ pathname: `/Main/ArticleDetail/${id}` });
       });
     } else {
-      api.article.addArticle({ title, body }).then((data) => {
+      api.article.addArticle({
+        title,
+        body,
+        category_id: 1,
+        tags_id: [1, 2],
+      }).then(() => {
         enqueueSnackbar('添加成功', { variant: 'success' });
       });
     }

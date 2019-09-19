@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import { Edit as EditIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { ArticleDetailWrapper } from './styled';
+import { ArticleDetailWrapper } from './style';
 import ArticleDetailComments from './ArticleDetailComments';
 import api from '@/api';
 
@@ -71,7 +71,7 @@ export default function ArticleDetail({ match, history }) {
         <div className={classes.articleContent} dangerouslySetInnerHTML={{ __html: body }} />
       </Paper>
       <Paper className={`${classes.paper} ${classes.articleComment}`}>
-        <ArticleDetailComments comments={comments} />
+        <ArticleDetailComments articleId={Number(id)} />
       </Paper>
     </ArticleDetailWrapper>
   );
