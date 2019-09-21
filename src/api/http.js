@@ -8,7 +8,7 @@ export default function ({
   params = {},
   requiredToken = false,
 }) {
-  const fullUrl = baseUrl + url;
+  let fullUrl = baseUrl + url;
   const headers = new Headers();
   requiredToken && headers.append('Authorization', `Token ${localStorage.getItem('token')}`);
 
@@ -19,14 +19,22 @@ export default function ({
     otherConfig.body = JSON.stringify(params);
   }
 
+  if (method === 'GET') {
+    fullUrl += '?';
+    Object.keys(params).forEach((objKey) => {
+      fullUrl += `${encodeURIComponent(objKey)}=${encodeURIComponent(params[objKey])}&`;
+    });
+    fullUrl = fullUrl.slice(0, -1);
+  }
+
   return fetch(fullUrl, {
     ...otherConfig,
     headers,
     method,
-  }).then((res) => {
-    if ([200, 201].includes(res.status)) {
-      return res.json();
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
     }
-    return res.json();
+    throw response;
   });
 }
